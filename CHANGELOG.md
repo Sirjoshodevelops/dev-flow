@@ -11,8 +11,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Changed
 
-- Factory Droid templates now extract to `.factory/commands` and `.factory/rules` so Flow respects the official directory structure.
-- Agent context update scripts and security notice now point Droid guidance to `.factory/rules/flow-rules.md` to align with the new layout.
+- Factory Droid templates now extract to both `.factory/commands` and `.droid/commands` (plus matching `rules/` folders) so Flow aligns with the current and legacy CLI loaders.
+- Agent context update scripts and security notice now point Droid guidance to `.factory/rules/flow-rules.md` while keeping `.droid/rules/specify-rules.md` in sync when present.
 
 ### Added
 

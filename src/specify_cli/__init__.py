@@ -1042,9 +1042,12 @@ def init(
     
     if selected_ai in agent_folder_map:
         agent_folder = agent_folder_map[selected_ai]
+        legacy_note = ""
+        if selected_ai == "droid":
+            legacy_note = "\nLegacy projects may still keep artifacts under [cyan].droid/[/cyan]; add both directories to your ignore rules when necessary."
         security_notice = Panel(
             f"Some agents may store credentials, auth tokens, or other identifying and private artifacts in the agent folder within your project.\n"
-            f"Consider adding [cyan]{agent_folder}[/cyan] (or parts of it) to [cyan].gitignore[/cyan] to prevent accidental credential leakage.",
+            f"Consider adding [cyan]{agent_folder}[/cyan] (or parts of it) to [cyan].gitignore[/cyan] to prevent accidental credential leakage.{legacy_note}",
             title="[yellow]Agent Folder Security[/yellow]",
             border_style="yellow",
             padding=(1, 2)

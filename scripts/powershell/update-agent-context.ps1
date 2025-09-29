@@ -54,7 +54,8 @@ $WINDSURF_FILE = Join-Path $REPO_ROOT '.windsurf/rules/specify-rules.md'
 $KILOCODE_FILE = Join-Path $REPO_ROOT '.kilocode/rules/specify-rules.md'
 $AUGGIE_FILE   = Join-Path $REPO_ROOT '.augment/rules/specify-rules.md'
 $ROO_FILE      = Join-Path $REPO_ROOT '.roo/rules/specify-rules.md'
-$DROID_FILE    = Join-Path $REPO_ROOT '.factory/rules/flow-rules.md'
+$DroidFactoryFile = Join-Path $REPO_ROOT '.factory/rules/flow-rules.md'
+$DroidLegacyFile  = Join-Path $REPO_ROOT '.droid/rules/specify-rules.md'
 
 $TEMPLATE_FILE = Join-Path $REPO_ROOT '.specify/templates/agent-file-template.md'
 
@@ -360,6 +361,15 @@ function Update-AgentFile {
     return $true
 }
 
+function Update-DroidContextFiles {
+    $result = $true
+    if (-not (Update-AgentFile -TargetFile $DroidFactoryFile -AgentName 'Factory Droid')) { $result = $false }
+    if (Test-Path $DroidLegacyFile) {
+        if (-not (Update-AgentFile -TargetFile $DroidLegacyFile -AgentName 'Factory Droid')) { $result = $false }
+    }
+    return $result
+}
+
 function Update-SpecificAgent {
     param(
         [Parameter(Mandatory=$true)]
@@ -377,7 +387,7 @@ function Update-SpecificAgent {
         'kilocode' { Update-AgentFile -TargetFile $KILOCODE_FILE -AgentName 'Kilo Code' }
         'auggie'   { Update-AgentFile -TargetFile $AUGGIE_FILE   -AgentName 'Auggie CLI' }
         'roo'      { Update-AgentFile -TargetFile $ROO_FILE      -AgentName 'Roo Code' }
-        'droid'    { Update-AgentFile -TargetFile $DROID_FILE    -AgentName 'Factory Droid' }
+        'droid'    { Update-DroidContextFiles }
         default { Write-Err "Unknown agent type '$Type'"; Write-Err 'Expected: claude|gemini|copilot|cursor|qwen|opencode|codex|windsurf|kilocode|auggie|roo|droid'; return $false }
     }
 }
@@ -395,7 +405,8 @@ function Update-AllExistingAgents {
     if (Test-Path $KILOCODE_FILE) { if (-not (Update-AgentFile -TargetFile $KILOCODE_FILE -AgentName 'Kilo Code')) { $ok = $false }; $found = $true }
     if (Test-Path $AUGGIE_FILE)   { if (-not (Update-AgentFile -TargetFile $AUGGIE_FILE   -AgentName 'Auggie CLI')) { $ok = $false }; $found = $true }
     if (Test-Path $ROO_FILE)      { if (-not (Update-AgentFile -TargetFile $ROO_FILE      -AgentName 'Roo Code')) { $ok = $false }; $found = $true }
-    if (Test-Path $DROID_FILE)    { if (-not (Update-AgentFile -TargetFile $DROID_FILE    -AgentName 'Factory Droid')) { $ok = $false }; $found = $true }
+    if (Test-Path $DroidFactoryFile) { if (-not (Update-AgentFile -TargetFile $DroidFactoryFile -AgentName 'Factory Droid')) { $ok = $false }; $found = $true }
+    if (Test-Path $DroidLegacyFile)  { if (-not (Update-AgentFile -TargetFile $DroidLegacyFile  -AgentName 'Factory Droid')) { $ok = $false }; $found = $true }
     if (-not $found) {
         Write-Info 'No existing agent files found, creating default Claude file...'
         if (-not (Update-AgentFile -TargetFile $CLAUDE_FILE -AgentName 'Claude Code')) { $ok = $false }
