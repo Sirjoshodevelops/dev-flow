@@ -69,8 +69,7 @@ WINDSURF_FILE="$REPO_ROOT/.windsurf/rules/specify-rules.md"
 KILOCODE_FILE="$REPO_ROOT/.kilocode/rules/specify-rules.md"
 AUGGIE_FILE="$REPO_ROOT/.augment/rules/specify-rules.md"
 ROO_FILE="$REPO_ROOT/.roo/rules/specify-rules.md"
-DROID_FACTORY_FILE="$REPO_ROOT/.factory/rules/flow-rules.md"
-DROID_LEGACY_FILE="$REPO_ROOT/.droid/rules/specify-rules.md"
+DROID_FILE="$REPO_ROOT/.factory/rules/flow-rules.md"
 
 # Template file
 TEMPLATE_FILE="$REPO_ROOT/.specify/templates/agent-file-template.md"
@@ -542,13 +541,7 @@ update_agent_file() {
 }
 
 update_droid_context_files() {
-    # Always update the primary .factory location
-    update_agent_file "$DROID_FACTORY_FILE" "Factory Droid"
-
-    # Maintain legacy .droid location when present for backward compatibility
-    if [[ -f "$DROID_LEGACY_FILE" ]]; then
-        update_agent_file "$DROID_LEGACY_FILE" "Factory Droid"
-    fi
+    update_agent_file "$DROID_FILE" "Factory Droid"
 }
 
 #==============================================================================
@@ -658,14 +651,8 @@ update_all_existing_agents() {
     fi
 
     local droid_updated=false
-    if [[ -f "$DROID_FACTORY_FILE" ]]; then
-        update_agent_file "$DROID_FACTORY_FILE" "Factory Droid"
-        found_agent=true
-        droid_updated=true
-    fi
-
-    if [[ -f "$DROID_LEGACY_FILE" ]]; then
-        update_agent_file "$DROID_LEGACY_FILE" "Factory Droid"
+    if [[ -f "$DROID_FILE" ]]; then
+        update_agent_file "$DROID_FILE" "Factory Droid"
         found_agent=true
         droid_updated=true
     fi

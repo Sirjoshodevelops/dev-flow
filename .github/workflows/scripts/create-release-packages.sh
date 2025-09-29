@@ -179,10 +179,9 @@ build_variant() {
       mkdir -p "$base_dir/.roo/commands"
       generate_commands roo md "\$ARGUMENTS" "$base_dir/.roo/commands" "$script" ;;
     droid)
-      mkdir -p "$base_dir/.factory/commands" "$base_dir/.droid/commands"
+      mkdir -p "$base_dir/.factory/commands"
       generate_commands droid md "\$ARGUMENTS" "$base_dir/.factory/commands" "$script"
-      cp -R "$base_dir/.factory/commands/." "$base_dir/.droid/commands/" 2>/dev/null || true
-      mkdir -p "$base_dir/.factory/rules" "$base_dir/.droid/rules" ;;
+      mkdir -p "$base_dir/.factory/rules" ;;
   esac
   ( cd "$base_dir" && zip -r "../dev-flow-template-${agent}-${script}-${NEW_VERSION}.zip" . )
   echo "Created $GENRELEASES_DIR/dev-flow-template-${agent}-${script}-${NEW_VERSION}.zip"
