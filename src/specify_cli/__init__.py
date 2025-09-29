@@ -1080,10 +1080,11 @@ def init(
 
     steps_lines.append("   2.1 [cyan]/constitution[/] - Establish project principles")
     steps_lines.append("   2.2 [cyan]/specify[/] - Create baseline specification")
-    steps_lines.append("   2.3 [cyan]/plan[/] - Create implementation plan")
-    steps_lines.append("   2.4 [cyan]/tasks[/] - Generate actionable tasks")
-    steps_lines.append("   2.5 [cyan]/implement[/] - Execute implementation")
-    steps_lines.append("   2.6 [cyan]/prp[/] - Generate Product Requirements Prompt runbook")
+    steps_lines.append("   2.3 [cyan]/prp[/] - Author the Product Requirements Prompt (run early to align scope & gates)")
+    steps_lines.append("   2.4 [cyan]/plan[/] - Create implementation plan")
+    steps_lines.append("   2.5 [cyan]/tasks[/] - Generate actionable tasks")
+    steps_lines.append("   2.6 [cyan]/implement[/] - Execute implementation")
+    steps_lines.append("   2.7 [cyan]/prp[/] (refresh) - Update evidence and validation gates after implementation")
 
     steps_panel = Panel("\n".join(steps_lines), title="Next Steps", border_style="cyan", padding=(1,2))
     console.print()

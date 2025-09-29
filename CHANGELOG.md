@@ -7,12 +7,14 @@ All notable changes to the Flow CLI will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
-## [0.0.18] - 2025-09-29
+## [0.0.19] - 2025-09-29
 
 ### Changed
 
 - Factory Droid templates now extract to both `.factory/commands` and `.droid/commands` (plus matching `rules/` folders) so Flow aligns with the current and legacy CLI loaders.
 - Agent context update scripts and security notice now point Droid guidance to `.factory/rules/flow-rules.md` while keeping `.droid/rules/specify-rules.md` in sync when present.
+ - Updated Flow Next Steps ordering: PRP runs early (after `/specify`/`/clarify`) and again post-implementation as a refresh.
+ - PRP and Plan command templates updated to reflect early PRP gate and final evidence refresh.
 
 ### Added
 

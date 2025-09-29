@@ -14,6 +14,7 @@ $ARGUMENTS
 Given the implementation details provided as an argument, do this:
 
 1. Run `{SCRIPT}` from the repo root and parse JSON for FEATURE_SPEC, IMPL_PLAN, SPECS_DIR, BRANCH. All future file paths must be absolute.
+   - Preconditions: Ensure a current PRP exists for this feature (created after `/specify` and `/clarify`). If missing or clearly outdated, PAUSE and instruct the user to run `/prp` first to align scope and validation gates.
    - BEFORE proceeding, inspect FEATURE_SPEC for a `## Clarifications` section with at least one `Session` subheading. If missing or clearly ambiguous areas remain (vague adjectives, unresolved critical choices), PAUSE and instruct the user to run `/clarify` first to reduce rework. Only continue if: (a) Clarifications exist OR (b) an explicit user override is provided (e.g., "proceed without clarification"). Do not attempt to fabricate clarifications yourself.
 2. Read and analyze the feature specification to understand:
    - The feature requirements and user stories
