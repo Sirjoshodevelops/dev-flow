@@ -7,7 +7,12 @@ All notable changes to the Flow CLI will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
-## [LATEST_VERSION] - RELEASE_DATE
+## [0.0.18] - 2025-09-29
+
+### Changed
+
+- Factory Droid templates now extract to `.factory/commands` and `.factory/rules` so Flow respects the official directory structure.
+- Agent context update scripts and security notice now point Droid guidance to `.factory/rules/flow-rules.md` to align with the new layout.
 
 ### Added
 

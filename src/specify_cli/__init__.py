@@ -1037,7 +1037,7 @@ def init(
         "auggie": ".augment/",
         "copilot": ".github/",
         "roo": ".roo/",
-        "droid": ".droid/",
+        "droid": ".factory/",
     }
     
     if selected_ai in agent_folder_map:
