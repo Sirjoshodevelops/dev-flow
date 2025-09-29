@@ -35,6 +35,7 @@ scripts:
 **IMPORTANT**: The /plan command STOPS at step 7. Phases 2-4 are executed by other commands:
 - Phase 2: /tasks command creates tasks.md
 - Phase 3-4: Implementation execution (manual or via tools)
+- Immediately after the plan is accepted, run `/prp` to regenerate the Product Requirements Prompt so downstream agents (including Factory Droid) use the latest blueprint.
 
 ## Summary
 [Extract from feature spec: primary requirement + technical approach from research]
@@ -165,6 +166,9 @@ directories captured above]
    - Update recent changes (keep last 3)
    - Keep under 150 lines for token efficiency
    - Output to repository root
+6. **Prime PRP generation**:
+   - Note any remaining `[NEEDS CLARIFICATION]` markers so `/prp` can pause instead of fabricating answers.
+   - Ensure contracts, data models, and quickstart entries include enough detail for the Implementation Blueprint and Validation Gates sections.
 
 **Output**: data-model.md, /contracts/*, failing tests, quickstart.md, agent-specific file
 
@@ -187,6 +191,11 @@ directories captured above]
 **Estimated Output**: 25-30 numbered, ordered tasks in tasks.md
 
 **IMPORTANT**: This phase is executed by the /tasks command, NOT by /plan
+
+## PRP Readiness Checklist
+- [ ] Research, design artifacts, and validation gates provide sufficient detail for the `/prp` command to populate Goal, Context, Implementation Blueprint, and Validation sections.
+- [ ] Outstanding decisions or risks are captured so the PRP Risk & Trade-off log remains accurate.
+- [ ] Evidence sources (tests, metrics, documentation) are identified to satisfy the "Evidence > assumptions" principle.
 
 ## Phase 3+: Future Implementation
 *These phases are beyond the scope of the /plan command*

@@ -31,6 +31,8 @@
 - ✅ Focus on WHAT users need and WHY
 - ❌ Avoid HOW to implement (no tech stack, APIs, code structure)
 - 👥 Written for business stakeholders, not developers
+- 🔁 Keep the eventual PRP aligned: unresolved ambiguities must be noted as `[NEEDS CLARIFICATION: …]` so the `/prp` workflow can pause instead of guessing.
+- 🧪 Every requirement must be evidence-ready (tests, metrics, or documentation) to satisfy the Engineering Principles (Evidence \> assumptions).
 
 ### Section Requirements
 - **Mandatory sections**: Must be completed for every feature
@@ -99,6 +101,11 @@ When creating this spec from a user prompt:
 - [ ] Success criteria are measurable
 - [ ] Scope is clearly bounded
 - [ ] Dependencies and assumptions identified
+
+### PRP Hooks
+- [ ] Specification cross-references business goals and success signals needed by the PRP runbook
+- [ ] Ambiguities cataloged so `/prp` can surface outstanding questions
+- [ ] User stories trace cleanly to validation scenarios and evidence expectations
 
 ---
 

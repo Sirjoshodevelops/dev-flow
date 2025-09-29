@@ -30,12 +30,12 @@
 #
 # 5. Multi-Agent Support
 #    - Handles agent-specific file paths and naming conventions
-#    - Supports: Claude, Gemini, Copilot, Cursor, Qwen, opencode, Codex, Windsurf
+#    - Supports: Claude, Gemini, Copilot, Cursor, Qwen, opencode, Codex, Windsurf, Kilo Code, Auggie, Roo, Factory Droid
 #    - Can update single agents or all existing agent files
 #    - Creates default Claude file if no agent files exist
 #
 # Usage: ./update-agent-context.sh [agent_type]
-# Agent types: claude|gemini|copilot|cursor|qwen|opencode|codex|windsurf
+# Agent types: claude|gemini|copilot|cursor|qwen|opencode|codex|windsurf|kilocode|auggie|roo|droid
 # Leave empty to update all existing agent files
 
 set -e
@@ -69,6 +69,7 @@ WINDSURF_FILE="$REPO_ROOT/.windsurf/rules/specify-rules.md"
 KILOCODE_FILE="$REPO_ROOT/.kilocode/rules/specify-rules.md"
 AUGGIE_FILE="$REPO_ROOT/.augment/rules/specify-rules.md"
 ROO_FILE="$REPO_ROOT/.roo/rules/specify-rules.md"
+DROID_FILE="$REPO_ROOT/.droid/rules/specify-rules.md"
 
 # Template file
 TEMPLATE_FILE="$REPO_ROOT/.specify/templates/agent-file-template.md"
@@ -580,9 +581,12 @@ update_specific_agent() {
         roo)
             update_agent_file "$ROO_FILE" "Roo Code"
             ;;
+        droid)
+            update_agent_file "$DROID_FILE" "Factory Droid"
+            ;;
         *)
             log_error "Unknown agent type '$agent_type'"
-            log_error "Expected: claude|gemini|copilot|cursor|qwen|opencode|codex|windsurf|kilocode|auggie|roo"
+            log_error "Expected: claude|gemini|copilot|cursor|qwen|opencode|codex|windsurf|kilocode|auggie|roo|droid"
             exit 1
             ;;
     esac
@@ -641,6 +645,11 @@ update_all_existing_agents() {
         update_agent_file "$ROO_FILE" "Roo Code"
         found_agent=true
     fi
+
+    if [[ -f "$DROID_FILE" ]]; then
+        update_agent_file "$DROID_FILE" "Factory Droid"
+        found_agent=true
+    fi
     
     # If no agent files exist, create a default Claude file
     if [[ "$found_agent" == false ]]; then
@@ -665,7 +674,7 @@ print_summary() {
     fi
     
     echo
-    log_info "Usage: $0 [claude|gemini|copilot|cursor|qwen|opencode|codex|windsurf|kilocode|auggie|roo]"
+    log_info "Usage: $0 [claude|gemini|copilot|cursor|qwen|opencode|codex|windsurf|kilocode|auggie|roo|droid]"
 }
 
 #==============================================================================

@@ -96,6 +96,7 @@ Task: "Integration test auth in tests/integration/test_auth.py"
 - Verify tests fail before implementing
 - Commit after each task
 - Avoid: vague tasks, same file conflicts
+- Update AGENTS.md and the PRP Evidence Ledger as tasks complete so proofs remain traceable (Evidence \> assumptions).
 
 ## Task Generation Rules
 *Applied during main() execution*
@@ -125,3 +126,4 @@ Task: "Integration test auth in tests/integration/test_auth.py"
 - [ ] Parallel tasks truly independent
 - [ ] Each task specifies exact file path
 - [ ] No task modifies same file as another [P] task
+- [ ] Resulting task list provides complete coverage for `/prp` Validation Gates and Evidence Ledger

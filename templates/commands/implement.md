@@ -20,6 +20,7 @@ $ARGUMENTS
    - **IF EXISTS**: Read contracts/ for API specifications and test requirements
    - **IF EXISTS**: Read research.md for technical decisions and constraints
    - **IF EXISTS**: Read quickstart.md for integration scenarios
+   - **IF EXISTS**: Read `prps/<feature-branch>.md` for Goal/Why, Implementation Blueprint, Validation Gates, and Evidence Ledger expectations (derive `<feature-branch>` from FEATURE_DIR).
 
 3. Parse tasks.md structure and extract:
    - **Task phases**: Setup, Tests, Core, Integration, Polish
@@ -40,6 +41,7 @@ $ARGUMENTS
    - **Core development**: Implement models, services, CLI commands, endpoints
    - **Integration work**: Database connections, middleware, logging, external services
    - **Polish and validation**: Unit tests, performance optimization, documentation
+   - **Evidence tracking**: For every completed task, update the PRP Evidence Ledger (or note the intended proof) so Evidence > assumptions remains true.
 
 6. Progress tracking and error handling:
    - Report progress after each completed task
@@ -54,6 +56,7 @@ $ARGUMENTS
    - Check that implemented features match the original specification
    - Validate that tests pass and coverage meets requirements
    - Confirm the implementation follows the technical plan
-   - Report final status with summary of completed work
+    - Ensure the PRP Validation Gates are satisfied and the Evidence Ledger contains links/logs for each fulfilled gate
+    - Report final status with summary of completed work and reference to the updated PRP entry
 
 Note: This command assumes a complete task breakdown exists in tasks.md. If tasks are incomplete or missing, suggest running `/tasks` first to regenerate the task list.
