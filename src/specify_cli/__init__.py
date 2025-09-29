@@ -10,18 +10,18 @@
 # ]
 # ///
 """
-Specify CLI - Setup tool for Specify projects
+Flow CLI - Setup tool for Spec-Driven Development projects
 
 Usage:
-    uvx specify-cli.py init <project-name>
-    uvx specify-cli.py init .
-    uvx specify-cli.py init --here
+    uvx flow-cli.py init <project-name>
+    uvx flow-cli.py init .
+    uvx flow-cli.py init --here
 
 Or install globally:
-    uv tool install --from specify-cli.py specify-cli
-    specify init <project-name>
-    specify init .
-    specify init --here
+    uv tool install --from flow-cli.py dev-flow
+    flow init <project-name>
+    flow init .
+    flow init --here
 """
 
 import os
@@ -95,7 +95,7 @@ BANNER = """
 ╚══════╝╚═╝     ╚══════╝ ╚═════╝╚═╝╚═╝        ╚═╝   
 """
 
-TAGLINE = "GitHub Spec Kit - Spec-Driven Development Toolkit"
+TAGLINE = "Flow CLI - Spec-Driven Development Toolkit"
 class StepTracker:
     """Track and render hierarchical steps without emojis, similar to Claude Code tree output.
     Supports live auto-refresh via an attached refresh callback.
@@ -307,8 +307,8 @@ class BannerGroup(TyperGroup):
 
 
 app = typer.Typer(
-    name="specify",
-    help="Setup tool for Specify spec-driven development projects",
+    name="flow",
+    help="Setup tool for Flow spec-driven development projects",
     add_completion=False,
     invoke_without_command=True,
     cls=BannerGroup,
@@ -338,7 +338,7 @@ def callback(ctx: typer.Context):
     # (help is handled by BannerGroup)
     if ctx.invoked_subcommand is None and "--help" not in sys.argv and "-h" not in sys.argv:
         show_banner()
-        console.print(Align.center("[dim]Run 'specify --help' for usage information[/dim]"))
+        console.print(Align.center("[dim]Run 'flow --help' for usage information[/dim]"))
         console.print()
 
 
@@ -421,7 +421,7 @@ def init_git_repo(project_path: Path, quiet: bool = False) -> bool:
             console.print("[cyan]Initializing git repository...[/cyan]")
         subprocess.run(["git", "init"], check=True, capture_output=True)
         subprocess.run(["git", "add", "."], check=True, capture_output=True)
-        subprocess.run(["git", "commit", "-m", "Initial commit from Specify template"], check=True, capture_output=True)
+        subprocess.run(["git", "commit", "-m", "Initial commit from Flow template"], check=True, capture_output=True)
         if not quiet:
             console.print("[green]✓[/green] Git repository initialized")
         return True
@@ -435,8 +435,8 @@ def init_git_repo(project_path: Path, quiet: bool = False) -> bool:
 
 
 def download_template_from_github(ai_assistant: str, download_dir: Path, *, script_type: str = "sh", verbose: bool = True, show_progress: bool = True, client: httpx.Client = None, debug: bool = False, github_token: str = None) -> Tuple[Path, dict]:
-    repo_owner = "github"
-    repo_name = "spec-kit"
+    repo_owner = "Sirjoshodevelops"
+    repo_name = "dev-flow"
     if client is None:
         client = httpx.Client(verify=ssl_context)
     
@@ -762,7 +762,7 @@ def init(
     github_token: str = typer.Option(None, "--github-token", help="GitHub token to use for API requests (or set GH_TOKEN or GITHUB_TOKEN environment variable)"),
 ):
     """
-    Initialize a new Specify project from the latest template.
+    Initialize a new Flow project from the latest template.
     
     This command will:
     1. Check that required tools are installed (git is optional)
@@ -773,24 +773,24 @@ def init(
     6. Optionally set up AI assistant commands
     
     Examples:
-        specify init my-project
-        specify init my-project --ai claude
-        specify init my-project --ai gemini
-        specify init my-project --ai copilot --no-git
-        specify init my-project --ai cursor
-        specify init my-project --ai qwen
-        specify init my-project --ai opencode
-        specify init my-project --ai codex
-        specify init my-project --ai windsurf
-        specify init my-project --ai auggie
-        specify init my-project --ai droid
-        specify init --ignore-agent-tools my-project
-        specify init . --ai claude         # Initialize in current directory
-        specify init .                     # Initialize in current directory (interactive AI selection)
-        specify init --here --ai claude    # Alternative syntax for current directory
-        specify init --here --ai codex
-        specify init --here
-        specify init --here --force  # Skip confirmation when current directory not empty
+        flow init my-project
+        flow init my-project --ai claude
+        flow init my-project --ai gemini
+        flow init my-project --ai copilot --no-git
+        flow init my-project --ai cursor
+        flow init my-project --ai qwen
+        flow init my-project --ai opencode
+        flow init my-project --ai codex
+        flow init my-project --ai windsurf
+        flow init my-project --ai auggie
+        flow init my-project --ai droid
+        flow init --ignore-agent-tools my-project
+        flow init . --ai claude         # Initialize in current directory
+        flow init .                     # Initialize in current directory (interactive AI selection)
+        flow init --here --ai claude    # Alternative syntax for current directory
+        flow init --here --ai codex
+        flow init --here
+        flow init --here --force  # Skip confirmation when current directory not empty
     """
     # Show banner first
     show_banner()
@@ -846,7 +846,7 @@ def init(
     current_dir = Path.cwd()
     
     setup_lines = [
-        "[cyan]Specify Project Setup[/cyan]",
+        "[cyan]Flow Project Setup[/cyan]",
         "",
         f"{'Project':<15} [green]{project_path.name}[/green]",
         f"{'Working Path':<15} [dim]{current_dir}[/dim]",
@@ -948,9 +948,9 @@ def init(
     
     # Download and set up project
     # New tree-based progress (no emojis); include earlier substeps
-    tracker = StepTracker("Initialize Specify Project")
+    tracker = StepTracker("Initialize Flow Project")
     # Flag to allow suppressing legacy headings
-    sys._specify_tracker_active = True
+    sys._flow_tracker_active = True
     # Pre steps recorded as completed before live rendering
     tracker.add("precheck", "Check required tools")
     tracker.complete("precheck", "ok")
@@ -1145,7 +1145,7 @@ def check():
 
     console.print(tracker.render())
 
-    console.print("\n[bold green]Specify CLI is ready to use![/bold green]")
+    console.print("\n[bold green]Flow CLI is ready to use![/bold green]")
 
     if not git_ok:
         console.print("[dim]Tip: Install git for repository management[/dim]")

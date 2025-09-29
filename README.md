@@ -8,7 +8,7 @@
     <strong>An effort to allow organizations to focus on product scenarios rather than writing undifferentiated code with the help of Spec-Driven Development.</strong>
 </p>
 
-[![Release](https://github.com/github/spec-kit/actions/workflows/release.yml/badge.svg)](https://github.com/github/spec-kit/actions/workflows/release.yml)
+[![Release](https://github.com/Sirjoshodevelops/dev-flow/actions/workflows/release.yml/badge.svg)](https://github.com/Sirjoshodevelops/dev-flow/actions/workflows/release.yml)
 
 ---
 
@@ -18,7 +18,7 @@
 - [⚡ Get started](#-get-started)
 - [📽️ Video Overview](#️-video-overview)
 - [🤖 Supported AI Agents](#-supported-ai-agents)
-- [🔧 Specify CLI Reference](#-specify-cli-reference)
+- [🔧 Flow CLI Reference](#-flow-cli-reference)
 - [📚 Core philosophy](#-core-philosophy)
 - [🌟 Development phases](#-development-phases)
 - [🎯 Experimental goals](#-experimental-goals)
@@ -37,7 +37,7 @@ Spec-Driven Development **flips the script** on traditional software development
 
 ## ⚡ Get started
 
-### 1. Install Specify
+### 1. Install Flow
 
 Choose your preferred installation method:
 
@@ -46,14 +46,14 @@ Choose your preferred installation method:
 Install once and use everywhere:
 
 ```bash
-uv tool install specify-cli --from git+https://github.com/github/spec-kit.git
+uv tool install dev-flow --from git+https://github.com/Sirjoshodevelops/dev-flow.git
 ```
 
 Then use the tool directly:
 
 ```bash
-specify init <PROJECT_NAME>
-specify check
+flow init <PROJECT_NAME>
+flow check
 ```
 
 #### Option 2: One-time Usage
@@ -61,7 +61,7 @@ specify check
 Run directly without installing:
 
 ```bash
-uvx --from git+https://github.com/github/spec-kit.git specify init <PROJECT_NAME>
+uvx --from git+https://github.com/Sirjoshodevelops/dev-flow.git flow init <PROJECT_NAME>
 ```
 
 **Benefits of persistent installation:**
@@ -135,23 +135,23 @@ Want to see Spec Kit in action? Watch our [video overview](https://www.youtube.c
 | [Roo Code](https://roocode.com/)                          | ✅ |                                                   |
 | [Codex CLI](https://github.com/openai/codex)              | ⚠️ | Codex [does not support](https://github.com/openai/codex/issues/2890) custom arguments for slash commands.  |
 
-## 🔧 Specify CLI Reference
+## 🔧 Flow CLI Reference
 
-The `specify` command supports the following options:
+The `flow` command supports the following options:
 
 ### Commands
 
 | Command     | Description                                                    |
 |-------------|----------------------------------------------------------------|
-| `init`      | Initialize a new Specify project from the latest template      |
+| `init`      | Initialize a new Flow project from the latest template      |
 | `check`     | Check for installed tools (`git`, `claude`, `gemini`, `code`/`code-insiders`, `cursor-agent`, `windsurf`, `qwen`, `opencode`, `codex`) |
 
-### `specify init` Arguments & Options
+### `flow init` Arguments & Options
 
 | Argument/Option        | Type     | Description                                                                  |
 |------------------------|----------|------------------------------------------------------------------------------|
 | `<project-name>`       | Argument | Name for your new project directory (optional if using `--here`, or use `.` for current directory) |
-| `--ai`                 | Option   | AI assistant to use: `claude`, `gemini`, `copilot`, `cursor`, `qwen`, `opencode`, `codex`, `windsurf`, `kilocode`, `auggie`, or `roo` |
+| `--ai`                 | Option   | AI assistant to use: `claude`, `gemini`, `copilot`, `cursor`, `qwen`, `opencode`, `codex`, `windsurf`, `kilocode`, `auggie`, `roo`, or `droid` |
 | `--script`             | Option   | Script variant to use: `sh` (bash/zsh) or `ps` (PowerShell)                 |
 | `--ignore-agent-tools` | Flag     | Skip checks for AI agent tools like Claude Code                             |
 | `--no-git`             | Flag     | Skip git repository initialization                                          |
@@ -165,46 +165,46 @@ The `specify` command supports the following options:
 
 ```bash
 # Basic project initialization
-specify init my-project
+flow init my-project
 
 # Initialize with specific AI assistant
-specify init my-project --ai claude
+flow init my-project --ai claude
 
 # Initialize with Cursor support
-specify init my-project --ai cursor
+flow init my-project --ai cursor
 
 # Initialize with Windsurf support
-specify init my-project --ai windsurf
+flow init my-project --ai windsurf
 
 # Initialize with PowerShell scripts (Windows/cross-platform)
-specify init my-project --ai copilot --script ps
+flow init my-project --ai copilot --script ps
 
 # Initialize in current directory
-specify init . --ai copilot
+flow init . --ai copilot
 # or use the --here flag
-specify init --here --ai copilot
+flow init --here --ai copilot
 
 # Force merge into current (non-empty) directory without confirmation
-specify init . --force --ai copilot
+flow init . --force --ai copilot
 # or 
-specify init --here --force --ai copilot
+flow init --here --force --ai copilot
 
 # Skip git initialization
-specify init my-project --ai gemini --no-git
+flow init my-project --ai gemini --no-git
 
 # Enable debug output for troubleshooting
-specify init my-project --ai claude --debug
+flow init my-project --ai claude --debug
 
 # Use GitHub token for API requests (helpful for corporate environments)
-specify init my-project --ai claude --github-token ghp_your_token_here
+flow init my-project --ai claude --github-token ghp_your_token_here
 
 # Check system requirements
-specify check
+flow check
 ```
 
 ### Available Slash Commands
 
-After running `specify init`, your AI coding agent will have access to these slash commands for structured development:
+After running `flow init`, your AI coding agent will have access to these slash commands for structured development:
 
 | Command         | Description                                                           |
 |-----------------|-----------------------------------------------------------------------|
@@ -287,53 +287,53 @@ If you encounter issues with an agent, please open an issue so we can refine the
 <details>
 <summary>Click to expand the detailed step-by-step walkthrough</summary>
 
-You can use the Specify CLI to bootstrap your project, which will bring in the required artifacts in your environment. Run:
+You can use the Flow CLI to bootstrap your project, which will bring in the required artifacts in your environment. Run:
 
 ```bash
-specify init <project_name>
+flow init <project_name>
 ```
 
 Or initialize in the current directory:
 
 ```bash
-specify init .
+flow init .
 # or use the --here flag
-specify init --here
+flow init --here
 # Skip confirmation when the directory already has files
-specify init . --force
+flow init . --force
 # or
-specify init --here --force
+flow init --here --force
 ```
 
-![Specify CLI bootstrapping a new project in the terminal](./media/specify_cli.gif)
+![Flow CLI bootstrapping a new project in the terminal](./media/specify_cli.gif)
 
 You will be prompted to select the AI agent you are using. You can also proactively specify it directly in the terminal:
 
 ```bash
-specify init <project_name> --ai claude
-specify init <project_name> --ai gemini
-specify init <project_name> --ai copilot
-specify init <project_name> --ai cursor
-specify init <project_name> --ai qwen
-specify init <project_name> --ai opencode
-specify init <project_name> --ai codex
-specify init <project_name> --ai windsurf
+flow init <project_name> --ai claude
+flow init <project_name> --ai gemini
+flow init <project_name> --ai copilot
+flow init <project_name> --ai cursor
+flow init <project_name> --ai qwen
+flow init <project_name> --ai opencode
+flow init <project_name> --ai codex
+flow init <project_name> --ai windsurf
 # Or in current directory:
-specify init . --ai claude
-specify init . --ai codex
+flow init . --ai claude
+flow init . --ai codex
 # or use --here flag
-specify init --here --ai claude
-specify init --here --ai codex
+flow init --here --ai claude
+flow init --here --ai codex
 # Force merge into a non-empty current directory
-specify init . --force --ai claude
+flow init . --force --ai claude
 # or
-specify init --here --force --ai claude
+flow init --here --force --ai claude
 ```
 
 The CLI will check if you have Claude Code, Gemini CLI, Cursor CLI, Qwen CLI, opencode, or Codex CLI installed. If you do not, or you prefer to get the templates without checking for the right tools, use `--ignore-agent-tools` with your command:
 
 ```bash
-specify init <project_name> --ai claude --ignore-agent-tools
+flow init <project_name> --ai claude --ignore-agent-tools
 ```
 
 ### **STEP 1:** Establish project principles
@@ -571,7 +571,7 @@ rm gcm-linux_amd64.2.6.1.deb
 
 ## 💬 Support
 
-For support, please open a [GitHub issue](https://github.com/github/spec-kit/issues/new). We welcome bug reports, feature requests, and questions about using Spec-Driven Development.
+For support, please open a [GitHub issue](https://github.com/Sirjoshodevelops/dev-flow/issues/new). We welcome bug reports, feature requests, and questions about using Spec-Driven Development.
 
 ## 🙏 Acknowledgements
 
