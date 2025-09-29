@@ -112,7 +112,13 @@ build_variant() {
     esac
   fi
   
-  [[ -d templates ]] && { mkdir -p "$SPEC_DIR/templates"; find templates -type f -not -path "templates/commands/*" -exec cp --parents {} "$SPEC_DIR"/ \; ; echo "Copied templates -> .specify/templates"; }
+  if [[ -d templates ]]; then
+    mkdir -p "$SPEC_DIR/templates"
+    while IFS= read -r -d '' file; do
+      rsync -R "$file" "$SPEC_DIR"/
+    done < <(find templates -type f -not -path "templates/commands/*" -print0)
+    echo "Copied templates -> .specify/templates"
+  fi
   # Inject variant into plan-template.md within .specify/templates if present
   local plan_tpl="$base_dir/.specify/templates/plan-template.md"
   if [[ -f "$plan_tpl" ]]; then
@@ -229,4 +235,4 @@ for agent in "${AGENT_LIST[@]}"; do
 done
 
 echo "Archives in $GENRELEASES_DIR:"
-ls -1 "$GENRELEASES_DIR"/spec-kit-template-*-"${NEW_VERSION}".zip
+ls -1 "$GENRELEASES_DIR"/dev-flow-template-*-"${NEW_VERSION}".zip
